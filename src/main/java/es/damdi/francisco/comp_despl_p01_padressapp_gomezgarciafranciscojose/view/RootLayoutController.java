@@ -1,6 +1,8 @@
 package es.damdi.francisco.comp_despl_p01_padressapp_gomezgarciafranciscojose.view;
 
 import es.damdi.francisco.comp_despl_p01_padressapp_gomezgarciafranciscojose.MainApp;
+import es.damdi.francisco.comp_despl_p01_padressapp_gomezgarciafranciscojose.model.Person;
+import es.damdi.francisco.comp_despl_p01_padressapp_gomezgarciafranciscojose.persistence.CsvPersonRepository;
 import javafx.fxml.FXML;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
@@ -9,6 +11,7 @@ import javafx.stage.FileChooser;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.List;
 
 public class RootLayoutController {
     private MainApp mainApp;
@@ -168,5 +171,45 @@ public class RootLayoutController {
         alert.setHeaderText(header);
         alert.setContentText(content + "\n\n" + e.getClass().getSimpleName() + ": " + e.getMessage());
         alert.showAndWait();
+    }
+
+    @FXML
+    private void handleExportCsv() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Export CSV");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+
+        File file = fileChooser.showSaveDialog(mainApp.getPrimaryStage());
+
+        if (file != null) {
+            if (!file.getPath().toLowerCase().endsWith(".csv")) {
+                file = new File(file.getPath() + ".csv");
+            }
+            try {
+                CsvPersonRepository csvRepo = new CsvPersonRepository();
+                csvRepo.save(file, mainApp.getPersonData());
+            } catch (IOException e) {
+                showError("Export Error", "Could not save data to CSV file:\n" + file.getPath(), e);
+            }
+        }
+    }
+
+    @FXML
+    private void handleImportCsv() {
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.setTitle("Import CSV");
+        fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("CSV Files", "*.csv"));
+
+        File file = fileChooser.showOpenDialog(mainApp.getPrimaryStage());
+
+        if (file != null) {
+            try {
+                CsvPersonRepository csvRepo = new CsvPersonRepository();
+                List<Person> importedPersons = csvRepo.load(file);
+                mainApp.getPersonData().addAll(importedPersons);
+            } catch (IOException e) {
+                showError("Import Error", "Could not load data from CSV file:\n" + file.getPath(), e);
+            }
+        }
     }
 }
