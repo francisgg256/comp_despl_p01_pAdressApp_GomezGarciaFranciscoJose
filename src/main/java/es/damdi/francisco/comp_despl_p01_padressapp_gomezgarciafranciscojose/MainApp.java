@@ -227,22 +227,29 @@ public class MainApp extends Application {
     /**
      * Opens a dialog to show birthday statistics.
      */
-    public void showBirthdayStatistics() {
+    public void showBirthdayStatistics(int tabIndex) {
         try {
             // Load the fxml file and create a new stage for the popup.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/BirthdayStatistics.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
+
             Stage dialogStage = new Stage();
             dialogStage.setTitle("Birthday Statistics");
-            dialogStage.initModality(Modality.WINDOW_MODAL);
-            dialogStage.initOwner(primaryStage);
+
+            // CAMBIO: Modality.NONE permite interactuar con la ventana principal
+            dialogStage.initModality(Modality.NONE);
+            // Eliminado dialogStage.initOwner(primaryStage) para hacerla independiente
+
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
             // Set the persons into the controller.
             BirthdayStatisticsController controller = loader.getController();
             controller.setPersonData(personData);
+
+            // CAMBIO: Selecciona la pestaña que le hemos pasado
+            controller.selectTab(tabIndex);
 
             dialogStage.show();
 

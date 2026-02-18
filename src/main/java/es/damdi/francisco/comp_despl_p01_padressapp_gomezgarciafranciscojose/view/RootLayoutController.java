@@ -67,8 +67,18 @@ public class RootLayoutController {
      * Opens the birthday statistics.
      */
     @FXML
-    private void handleShowBirthdayStatistics() {
-        mainApp.showBirthdayStatistics();
+    private void handleShowBarChart() {
+        mainApp.showBirthdayStatistics(0);
+    }
+
+    @FXML
+    private void handleShowPieChart() {
+        mainApp.showBirthdayStatistics(1);
+    }
+
+    @FXML
+    private void handleShowLineChart() {
+        mainApp.showBirthdayStatistics(2);
     }
 // -------------------- SAVE LOGIC --------------------
     /**

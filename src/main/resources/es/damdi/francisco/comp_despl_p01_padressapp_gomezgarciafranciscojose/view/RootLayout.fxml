@@ -46,7 +46,9 @@
 
                 <Menu mnemonicParsing="false" text="Statistics">
                     <items>
-                        <MenuItem mnemonicParsing="false" onAction="#handleShowBirthdayStatistics" text="Show Statistics" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleShowBarChart" text="Show Bar Chart" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleShowPieChart" text="Show Generations Chart" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleShowLineChart" text="Show Line Chart" />
                     </items>
                 </Menu>
 

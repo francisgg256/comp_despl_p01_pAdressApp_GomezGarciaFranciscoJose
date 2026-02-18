@@ -11,7 +11,7 @@
 
 <AnchorPane prefHeight="450.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.damdi.francisco.comp_despl_p01_padressapp_gomezgarciafranciscojose.view.BirthdayStatisticsController">
     <children>
-        <TabPane prefHeight="450.0" prefWidth="620.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <TabPane fx:id="tabPane" prefHeight="450.0" prefWidth="620.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
             <tabs>
                 <Tab text="Birthday Months">
                     <content>
