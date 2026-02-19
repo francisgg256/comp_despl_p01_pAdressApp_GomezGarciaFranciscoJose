@@ -91,6 +91,7 @@ public class MainApp extends Application {
             controller.setMainApp(this);
             // Show the scene containing the root layout.
             Scene scene = new Scene(rootLayout);
+            scene.getStylesheets().add(MainApp.class.getResource("view/bootstrapfx.css").toExternalForm());
             primaryStage.setScene(scene);
             primaryStage.show();
         } catch (IOException e) {
@@ -141,6 +142,7 @@ public class MainApp extends Application {
             dialogStage.initModality(Modality.WINDOW_MODAL);
             dialogStage.initOwner(primaryStage);
             Scene scene = new Scene(page);
+            scene.getStylesheets().add(MainApp.class.getResource("view/bootstrapfx.css").toExternalForm());
             dialogStage.setScene(scene);
 
             // Set the person into the controller.
@@ -216,11 +218,9 @@ public class MainApp extends Application {
                 loadPersonDataFromJson(f);
                 setPersonFilePath(f);
             } catch (IOException ignored) {
-                // si falla, te quedas con los datos en memoria (ej. sample data)
             }
         } else {
-            // No existe aún: te quedas con los sample data (o lista vacía, como prefieras)
-            setPersonFilePath(f); // así autosave crea el fichero al salir
+            setPersonFilePath(f);
         }
     }
 
@@ -245,6 +245,8 @@ public class MainApp extends Application {
             dialogStage.initModality(Modality.NONE);
 
             Scene scene = new Scene(page);
+            scene.getStylesheets().add(MainApp.class.getResource("view/DarkTheme.css").toExternalForm());
+            scene.getStylesheets().add(MainApp.class.getResource("view/bootstrapfx.css").toExternalForm());
             dialogStage.setScene(scene);
 
             BirthdayStatisticsController controller = loader.getController();
