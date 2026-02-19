@@ -9,6 +9,9 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
+/**
+ * The type Tooltip example.
+ */
 public class TooltipExample extends Application {
     @Override
     public void start(Stage primaryStage) {
@@ -49,7 +52,12 @@ public class TooltipExample extends Application {
         primaryStage.show();
     }
 
-    // Método principal para lanzar la aplicación
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
+// Método principal para lanzar la aplicación
     public static void main(String[] args) {
         launch(args);
     }

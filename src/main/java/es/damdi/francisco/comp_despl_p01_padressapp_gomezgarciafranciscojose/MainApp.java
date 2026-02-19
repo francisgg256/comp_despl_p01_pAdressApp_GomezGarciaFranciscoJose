@@ -25,6 +25,9 @@ import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Main app.
+ */
 public class MainApp extends Application {
 
     private Stage primaryStage;
@@ -40,6 +43,7 @@ public class MainApp extends Application {
 
     private File personFilePath;
     private boolean dirty;
+
     /**
      * Constructor
      */
@@ -59,7 +63,8 @@ public class MainApp extends Application {
 
     /**
      * Returns the data as an observable list of Persons.
-     * @return
+     *
+     * @return the person data
      */
     public ObservableList<Person> getPersonData() {
         return personData;
@@ -159,6 +164,12 @@ public class MainApp extends Application {
             return false;
         }
     }
+
+    /**
+     * Sets person file path.
+     *
+     * @param file the file
+     */
     public void setPersonFilePath(File file) {
         this.personFilePath = file;
         AppPreferences.setPersonFile(file == null ? null : file.getAbsolutePath());
@@ -169,6 +180,12 @@ public class MainApp extends Application {
         }
     }
 
+    /**
+     * Load person data from json.
+     *
+     * @param file the file
+     * @throws IOException the io exception
+     */
     public void loadPersonDataFromJson(File file) throws IOException {
         // 1) Cargar desde repositorio
         List<Person> loaded = repository.load(file);
@@ -181,6 +198,12 @@ public class MainApp extends Application {
         setDirty(false);
     }
 
+    /**
+     * Save person data to json.
+     *
+     * @param file the file
+     * @throws IOException the io exception
+     */
     public void savePersonDataToJson(File file) throws IOException {
         // 1) Guardar con el repositorio
         repository.save(file, new ArrayList<>(personData));
@@ -226,6 +249,8 @@ public class MainApp extends Application {
 
     /**
      * Opens a dialog to show birthday statistics.
+     *
+     * @param tabIndex the tab index
      */
     public void showBirthdayStatistics(int tabIndex) {
         try {
@@ -264,35 +289,66 @@ public class MainApp extends Application {
     private final Path defaultJsonPath =
             Paths.get(System.getProperty("user.home"), ".addressappv2", "persons.json");
 
+    /**
+     * Gets repository.
+     *
+     * @return the repository
+     */
     public PersonRepository getRepository() {
         return repository;
     }
 
 
+    /**
+     * Gets person file path.
+     *
+     * @return the person file path
+     */
     public File getPersonFilePath() {
         return personFilePath;
     }
 
+    /**
+     * Is dirty boolean.
+     *
+     * @return the boolean
+     */
     public boolean isDirty() {
         return dirty;
     }
 
+    /**
+     * Sets dirty.
+     *
+     * @param dirty the dirty
+     */
     public void setDirty(boolean dirty) {
         this.dirty = dirty;
     }
 
+    /**
+     * Sets person data.
+     *
+     * @param personData the person data
+     */
     public void setPersonData(ObservableList<Person> personData) {
         this.personData = personData;
     }
 
     /**
      * Returns the main stage.
-     * @return
+     *
+     * @return the primary stage
      */
     public Stage getPrimaryStage() {
         return primaryStage;
     }
 
+    /**
+     * The entry point of application.
+     *
+     * @param args the input arguments
+     */
     public static void main(String[] args) {
         launch(args);
     }

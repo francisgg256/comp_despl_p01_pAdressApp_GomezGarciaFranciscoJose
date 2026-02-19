@@ -40,6 +40,11 @@ public class BirthdayStatisticsController {
         xAxis.setCategories(monthNames);
     }
 
+    /**
+     * Select tab.
+     *
+     * @param tabIndex the tab index
+     */
     public void selectTab(int tabIndex) {
         if (tabPane != null && tabIndex >= 0 && tabIndex < tabPane.getTabs().size()) {
 
@@ -59,6 +64,11 @@ public class BirthdayStatisticsController {
     }
 
 
+    /**
+     * Sets person data.
+     *
+     * @param persons the persons
+     */
     public void setPersonData(ObservableList<Person> persons) {
 
         updateAllCharts(persons);
