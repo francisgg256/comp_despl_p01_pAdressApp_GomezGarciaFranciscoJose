@@ -80,6 +80,11 @@ public class RootLayoutController {
     private void handleShowLineChart() {
         mainApp.showBirthdayStatistics(2);
     }
+
+    @FXML
+    private void handleShowDonutChart() {
+        mainApp.showBirthdayStatistics(3);
+    }
 // -------------------- SAVE LOGIC --------------------
     /**
      * Guarda en el fichero actual. Si no existe (no se ha guardado nunca),

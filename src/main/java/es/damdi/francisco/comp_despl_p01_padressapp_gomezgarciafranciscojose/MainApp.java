@@ -229,26 +229,27 @@ public class MainApp extends Application {
      */
     public void showBirthdayStatistics(int tabIndex) {
         try {
-            // Load the fxml file and create a new stage for the popup.
             FXMLLoader loader = new FXMLLoader();
             loader.setLocation(MainApp.class.getResource("view/BirthdayStatistics.fxml"));
             AnchorPane page = (AnchorPane) loader.load();
 
             Stage dialogStage = new Stage();
-            dialogStage.setTitle("Birthday Statistics");
 
-            // CAMBIO: Modality.NONE permite interactuar con la ventana principal
+            String[] titulos = {"Bar Chart (Months)", "Pie Chart (Generations)", "Line Chart (Trends)", "Donut Chart (TilesFX)"};
+            if(tabIndex >= 0 && tabIndex < titulos.length) {
+                dialogStage.setTitle("Statistics - " + titulos[tabIndex]);
+            } else {
+                dialogStage.setTitle("Statistics");
+            }
+
             dialogStage.initModality(Modality.NONE);
-            // Eliminado dialogStage.initOwner(primaryStage) para hacerla independiente
 
             Scene scene = new Scene(page);
             dialogStage.setScene(scene);
 
-            // Set the persons into the controller.
             BirthdayStatisticsController controller = loader.getController();
             controller.setPersonData(personData);
 
-            // CAMBIO: Selecciona la pestaña que le hemos pasado
             controller.selectTab(tabIndex);
 
             dialogStage.show();

@@ -1,12 +1,16 @@
 package es.damdi.francisco.comp_despl_p01_padressapp_gomezgarciafranciscojose.view;
 
 import es.damdi.francisco.comp_despl_p01_padressapp_gomezgarciafranciscojose.model.Person;
+import eu.hansolo.tilesfx.Tile;
+import eu.hansolo.tilesfx.TileBuilder;
+import eu.hansolo.tilesfx.chart.ChartData;
 import javafx.collections.FXCollections;
 import javafx.collections.ListChangeListener;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.chart.*;
 import javafx.scene.control.TabPane;
+import javafx.scene.layout.StackPane;
 
 import java.text.DateFormatSymbols;
 import java.util.*;
@@ -23,6 +27,9 @@ public class BirthdayStatisticsController {
     @FXML private PieChart pieChart;
     @FXML private LineChart<Number, Number> lineChart;
     @FXML private TabPane tabPane;
+    @FXML private StackPane donutChartContainer;
+
+    private Tile donutTile;
 
     private ObservableList<String> monthNames = FXCollections.observableArrayList();
 
@@ -33,10 +40,21 @@ public class BirthdayStatisticsController {
         xAxis.setCategories(monthNames);
     }
 
-
     public void selectTab(int tabIndex) {
-        if (tabPane != null) {
-            tabPane.getSelectionModel().select(tabIndex);
+        if (tabPane != null && tabIndex >= 0 && tabIndex < tabPane.getTabs().size()) {
+
+            javafx.scene.Node chartContent = tabPane.getTabs().get(tabIndex).getContent();
+
+            javafx.scene.layout.AnchorPane rootPane = (javafx.scene.layout.AnchorPane) tabPane.getParent();
+
+            rootPane.getChildren().clear();
+
+            rootPane.getChildren().add(chartContent);
+
+            javafx.scene.layout.AnchorPane.setTopAnchor(chartContent, 0.0);
+            javafx.scene.layout.AnchorPane.setBottomAnchor(chartContent, 0.0);
+            javafx.scene.layout.AnchorPane.setLeftAnchor(chartContent, 0.0);
+            javafx.scene.layout.AnchorPane.setRightAnchor(chartContent, 0.0);
         }
     }
 
@@ -67,6 +85,7 @@ public class BirthdayStatisticsController {
         updateBarChart(persons);
         updatePieChart(persons);
         updateLineChart(persons);
+        updateDonutChart(persons);
     }
 
     private void updateBarChart(List<Person> persons) {
@@ -123,5 +142,39 @@ public class BirthdayStatisticsController {
         }
         lineChart.getData().clear();
         lineChart.getData().add(series);
+    }
+
+    private void updateDonutChart(List<Person> persons) {
+        int genZ = 0, millennials = 0, genX = 0, boomers = 0, others = 0;
+        for (Person p : persons) {
+            if (p.getBirthday() != null) {
+                int year = p.getBirthday().getYear();
+                if (year >= 1997 && year <= 2012) genZ++;
+                else if (year >= 1981 && year <= 1996) millennials++;
+                else if (year >= 1965 && year <= 1980) genX++;
+                else if (year >= 1946 && year <= 1964) boomers++;
+                else others++;
+            }
+        }
+
+        if (donutTile == null) {
+            donutTile = TileBuilder.create()
+                    .skinType(Tile.SkinType.DONUT_CHART)
+                    .title("Generations (Donut)")
+                    .animated(true)
+                    .build();
+            if (donutChartContainer != null) {
+                donutChartContainer.getChildren().add(donutTile);
+            }
+        }
+
+        donutTile.getChartData().clear();
+        donutTile.getChartData().addAll(
+                new ChartData("Gen Z", genZ, Tile.BLUE),
+                new ChartData("Millennials", millennials, Tile.GREEN),
+                new ChartData("Gen X", genX, Tile.ORANGE),
+                new ChartData("Baby Boomers", boomers, Tile.RED),
+                new ChartData("Others", others, Tile.GRAY)
+        );
     }
 }

@@ -9,6 +9,7 @@
 <?import javafx.scene.chart.PieChart?>
 <?import javafx.scene.chart.LineChart?>
 
+<?import javafx.scene.layout.StackPane?>
 <AnchorPane prefHeight="450.0" prefWidth="620.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="es.damdi.francisco.comp_despl_p01_padressapp_gomezgarciafranciscojose.view.BirthdayStatisticsController">
     <children>
         <TabPane fx:id="tabPane" prefHeight="450.0" prefWidth="620.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -54,6 +55,11 @@
                                 </LineChart>
                             </children>
                         </AnchorPane>
+                    </content>
+                </Tab>
+                <Tab text="Generations">
+                    <content>
+                        <StackPane fx:id="donutChartContainer" prefHeight="180.0" prefWidth="200.0" />
                     </content>
                 </Tab>
             </tabs>

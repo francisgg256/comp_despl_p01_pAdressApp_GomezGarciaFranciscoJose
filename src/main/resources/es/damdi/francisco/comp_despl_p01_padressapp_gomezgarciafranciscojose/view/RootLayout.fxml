@@ -49,6 +49,7 @@
                         <MenuItem mnemonicParsing="false" onAction="#handleShowBarChart" text="Show Bar Chart" />
                         <MenuItem mnemonicParsing="false" onAction="#handleShowPieChart" text="Show Generations Chart" />
                         <MenuItem mnemonicParsing="false" onAction="#handleShowLineChart" text="Show Line Chart" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleShowDonutChart" text="Show Donut Chart" />
                     </items>
                 </Menu>
 
