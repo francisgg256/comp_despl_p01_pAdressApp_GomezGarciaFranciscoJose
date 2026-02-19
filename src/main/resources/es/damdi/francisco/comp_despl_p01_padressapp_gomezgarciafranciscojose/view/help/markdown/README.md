@@ -4,8 +4,8 @@ Este repositorio contiene ejemplos de codigo Maquetación  web con FLEX y GRID
 
 ## Información básica 
 
-* Profesora: Isabel Cayuela Pérez
-  * email: isabel.cayuela@iesalandalus.org
+* Alumno: Francisco José Gómez García
+  * email: fjoseprohias@gmail.com
   * mooodle centros: https://educacionadistancia.juntadeandalucia.es/centros/almeria/course/view.php?id=4918
 
 ### Recursos adicionales
