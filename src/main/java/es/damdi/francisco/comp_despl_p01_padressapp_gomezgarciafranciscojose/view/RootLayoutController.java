@@ -8,6 +8,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
@@ -84,6 +85,49 @@ public class RootLayoutController {
     @FXML
     private void handleShowDonutChart() {
         mainApp.showBirthdayStatistics(3);
+    }
+
+    @FXML
+    private void handleShowHtmlHelp() {
+        try {
+            HelpViewer htmlHelp = new HelpViewer();
+            htmlHelp.start(new Stage());
+        } catch (Exception e) {
+            showError("Error de Ayuda", "No se pudo abrir la ayuda HTML.", e);
+        }
+    }
+
+    @FXML
+    private void handleShowPdfHelp() {
+        try {
+            PDFHelpViewer pdfHelp = new PDFHelpViewer();
+            pdfHelp.start(new Stage());
+        } catch (Exception e) {
+            showError("Error de Ayuda", "No se pudo abrir el manual PDF.", e);
+        }
+    }
+
+    @FXML
+    private void handleShowMarkdownHelp() {
+        try {
+            MarkdownHelp mdHelp = new MarkdownHelp();
+            mdHelp.start(new Stage());
+        } catch (Exception e) {
+            showError("Error de Ayuda", "No se pudo abrir la ayuda Markdown.", e);
+        }
+    }
+
+    @FXML
+    private void handleAbout() {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("AddressApp");
+        alert.setHeaderText("About AddressApp");
+        alert.setContentText("Author: Francisco José Gómez García\n\n" +
+                "Application to manage contacts, view statistics, and read documentation.\n" +
+                "Version: 1.0\n" +
+                "2024 - DAM");
+        alert.initOwner(mainApp.getPrimaryStage());
+        alert.showAndWait();
     }
 // -------------------- SAVE LOGIC --------------------
     /**

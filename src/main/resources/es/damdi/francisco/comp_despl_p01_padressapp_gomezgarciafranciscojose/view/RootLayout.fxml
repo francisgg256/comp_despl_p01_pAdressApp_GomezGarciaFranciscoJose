@@ -55,7 +55,9 @@
 
                 <Menu mnemonicParsing="false" text="Help">
                     <items>
-                        <MenuItem mnemonicParsing="false" text="About" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleShowHtmlHelp" text="Ayuda HTML" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleShowPdfHelp" text="Manual PDF" />
+                        <MenuItem mnemonicParsing="false" onAction="#handleShowMarkdownHelp" text="Ayuda Markdown" />
                     </items>
                 </Menu>
             </menus>

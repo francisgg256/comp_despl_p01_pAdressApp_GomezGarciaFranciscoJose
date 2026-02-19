@@ -8,8 +8,13 @@ module es.damdi.francisco.comp_despl_p01_padressapp_gomezgarciafranciscojose {
     requires java.prefs;
     requires eu.hansolo.tilesfx;
     requires javafx.web;
+    requires flexmark;
+    requires flexmark.util.ast;
+    requires PDFViewerFX;
+    requires org.slf4j;
+    requires org.slf4j.simple;
 
-    //opens es.damdi.francisco.comp_despl_p01_padressapp_gomezgarciafranciscojose.persistence;
+    opens es.damdi.francisco.comp_despl_p01_padressapp_gomezgarciafranciscojose.persistence;
     opens es.damdi.francisco.comp_despl_p01_padressapp_gomezgarciafranciscojose.model;
     opens es.damdi.francisco.comp_despl_p01_padressapp_gomezgarciafranciscojose.view;
     opens es.damdi.francisco.comp_despl_p01_padressapp_gomezgarciafranciscojose to javafx.fxml;
