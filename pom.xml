@@ -103,10 +103,10 @@
                     <configuration>
                         <!-- Para JDK 9+ mejor "release" -->
                         <release>${maven.compiler.release}</release>
-                        <additonalOptions>
+                        <additionalOptions>
                             <additionalOption>--show-packages</additionalOption>
                             <additionalOption>all</additionalOption>
-                        </additonalOptions>
+                        </additionalOptions>
                     </configuration>
                 </plugin>
             </plugins>
